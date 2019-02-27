@@ -7,7 +7,6 @@ import com.demo.Author
 import com.demo.Book
 import com.demo.BookType
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.orm.hibernate4.HibernateQueryException
 import spock.lang.Specification
 import spock.lang.Unroll
 
@@ -37,7 +36,8 @@ class FilterPaneServiceSpec extends Specification {
         }
 
         then:
-        thrown(HibernateQueryException)
+        def exception = thrown(Exception)
+        exception.message.contains("could not resolve property: coAuthor.firstName of: com.demo.Book")
     }
 
     def "test nested criteria call"() {

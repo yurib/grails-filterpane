@@ -287,7 +287,9 @@ class FilterPaneUtils {
 
     static resolveDomainProperty(domainClass, property) {
 
-        if ("id".equals(property) || "identifier".equals(property)) {
+        if ("id".equals(property) || "identifier".equals(property)
+                || domainClass.identifier.name ==  property
+        ) {
             return domainClass.identifier
         }
 
