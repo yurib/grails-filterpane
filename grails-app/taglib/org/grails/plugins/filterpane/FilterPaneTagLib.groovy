@@ -364,10 +364,11 @@ class FilterPaneTagLib {
            */
 
         def finalProps = [:]
-        List persistentProps = domain.persistentProperties as List
+        List persistentProps = [domain.identifier] + (domain.persistentProperties as List)
         List additionalPropNames = resolveListAttribute(attrs.additionalProperties)
         List excludePropNames = resolveListAttribute(attrs.excludeProperties)
         List associatedPropNames = resolveListAttribute(attrs.associatedProperties)
+        log.debug "persistentProps: ${persistentProps} additionalPropNames: ${additionalPropNames}, excludePropNames: ${excludePropNames}, associatedPropNames:${associatedPropNames}"
 
         // DEPRECATION: attribute name filterProperties as of 2.0
         List explicitPropNames = resolveListAttribute(attrs.explicitProperties ?: attrs.filterProperties)
